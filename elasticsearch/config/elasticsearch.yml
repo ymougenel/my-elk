@@ -1,0 +1,9 @@
+---
+cluster.name: "docker-cluster"
+network.host: _site_
+
+discovery.type: single-node
+cluster.routing.allocation.disk.watermark.low: "5gb"
+cluster.routing.allocation.disk.watermark.high: "4gb"
+cluster.routing.allocation.disk.watermark.flood_stage: "3gb"
+cluster.info.update.interval: "1m"

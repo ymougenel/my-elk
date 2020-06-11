@@ -62,6 +62,43 @@ services:
     networks:
     - elk-network
 
+  kibana:
+    image: kibana
+    container_name: kibana
+    build:
+      context: .
+      dockerfile: kibana/Dockerfile
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    env_file:
+      - .env
+    ports:
+      - 5601:5601
+    networks:
+    - elk-network
+
+  elasticsearch:
+    image: elasticsearch
+    container_name: elasticsearch
+    build:
+      context: .
+      dockerfile: elasticsearch/Dockerfile
+      args:
+        ELK_VERSION: $ELK_VERSION
+    ports:
+      - 9220:9200
+      - 9320:9300
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    env_file:
+      - .env
+    environment:
+      ES_JAVA_OPTS: "-Xmx2G -Xms2G"
+    networks:
+    - elk-network
+
 #TODO split networks
 networks:
   elk-network:
