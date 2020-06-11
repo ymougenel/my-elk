@@ -19,10 +19,48 @@ services:
       dockerfile: src/main/resources/Dockerfile
     container_name: springboot-elk
     image: springboot-elk
+    env_file:
+    - .env
     ports:
       - 8080:8080
     networks:
       - elk-network
+
+  logstash_parser:
+    image: logstash_parser
+    container_name: logstash-parser
+    build:
+      context: .
+      dockerfile: logstash_parser/Dockerfile
+      args:
+        ELK_VERSION: ${ELK_VERSION}
+    env_file:
+    - .env
+    environment:
+      LS_JAVA_OPTS: "-Xmx2G -Xms2G"
+    volumes:
+    - ./logstash_parser/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    - ./logstash_parser/pipeline:/usr/share/logstash/pipeline:ro
+    networks:
+    - elk-network
+
+  logstash_indexer:
+    image: logstash_indexer
+    container_name: logstash-indexer
+    build:
+      context: .
+      dockerfile: logstash_indexer/Dockerfile
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+    - ./logstash_indexer/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    - ./logstash_indexer/pipeline:/usr/share/logstash/pipeline:ro
+    env_file:
+    - .env
+    environment:
+      LS_JAVA_OPTS: "-Xmx2G -Xms2G"
+    networks:
+    - elk-network
 
 #TODO split networks
 networks:

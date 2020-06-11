@@ -34,6 +34,13 @@
       "read": ".*"
     },
     {
+      "user": "admin",
+      "vhost": ".*",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
       "user": "another-user",
       "vhost": "otherVhost",
       "configure": ".*",

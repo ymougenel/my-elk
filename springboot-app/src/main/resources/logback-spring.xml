@@ -10,13 +10,13 @@
             </Pattern>
         </layout>
     </appender>
-    <!--<appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-        <!--<destination>${LOGSTASH_HOST}:${LOGSTASH_PORT}</destination>-->
-        <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder" />-->
-    <!--</appender>-->
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>${LOGSTASH_HOST}:${LOGSTASH_PORT}</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
     <root level="info">
         <appender-ref ref="Console" />
-        <!--<appender-ref ref="stash"/>-->
+        <appender-ref ref="stash"/>
     </root>
 
 
