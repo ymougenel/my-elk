@@ -1,18 +1,30 @@
 version: '3.5'
 services:
 
-  rabbitmq:
+  rabbitmq-elk:
     build:
       context: rabbitmq
       dockerfile: Dockerfile
-    container_name: elk-rabbit
-    image: elk-rabbitmq
+    container_name: rabbit-elk
+    image: rabbitmq-elk
     ports:
       - 15672:15672
       - 5672:5672
     networks:
       - elk-network
-      
+
+  springboot-elk:
+    build:
+      context: springboot-app
+      dockerfile: src/main/resources/Dockerfile
+    container_name: springboot-elk
+    image: springboot-elk
+    ports:
+      - 8080:8080
+    networks:
+      - elk-network
+
+#TODO split networks
 networks:
   elk-network:
     name: elk-network
