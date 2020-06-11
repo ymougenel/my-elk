@@ -1,0 +1,49 @@
+{
+  "rabbit_version": "3.8",
+  "users": [
+    {
+      "name": "logstash-user",
+      "password": "password",
+      "tags": "management"
+    },
+    {
+      "name": "another-user",
+      "password": "password",
+      "tags": "management"
+    },
+    {
+      "name": "admin",
+      "password": "admin",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "elk"
+    },
+    {
+      "name": "otherVhost"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "logstash-user",
+      "vhost": "elk",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "another-user",
+      "vhost": "otherVhost",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "queues": [],
+  "exchanges": [],
+  "bindings": []
+}
