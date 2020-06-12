@@ -1,5 +1,4 @@
 ---
 server.name: kibana
 server.host: "0"
-
 elasticsearch.hosts: [ "http://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}" ]

@@ -96,6 +96,7 @@ services:
       - .env
     environment:
       ES_JAVA_OPTS: "-Xmx2G -Xms2G"
+      ELASTIC_PASSWORD: "$ELASTICSEARCH_PASSWORD"
     networks:
     - elk-network
 

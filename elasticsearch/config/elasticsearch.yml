@@ -1,5 +1,6 @@
 ---
 cluster.name: "docker-cluster"
+xpack.security.enabled: true
 network.host: _site_
 
 discovery.type: single-node
