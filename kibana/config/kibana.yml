@@ -1,4 +1,6 @@
 ---
 server.name: kibana
 server.host: "0"
+elasticsearch.username: "elactic"
+elasticsearch.password: "${ELASTICSEARCH_PASSWORD}"
 elasticsearch.hosts: [ "http://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}" ]
